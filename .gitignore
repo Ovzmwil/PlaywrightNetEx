@@ -1,0 +1,31 @@
+# .NET
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.nuget.props
+*.nuget.targets
+
+# Build directories
+out/
+artifacts/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vs/
+.vscode/
+.history/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

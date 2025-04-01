@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaywrightNetEx", "PlaywrightNetEx.csproj", "{D624EF53-3CF5-43E6-9706-D49D410FCC2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D624EF53-3CF5-43E6-9706-D49D410FCC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D624EF53-3CF5-43E6-9706-D49D410FCC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D624EF53-3CF5-43E6-9706-D49D410FCC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D624EF53-3CF5-43E6-9706-D49D410FCC2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35FBFA2A-749A-4E49-89E6-680832F144F2}
+	EndGlobalSection
+EndGlobal
