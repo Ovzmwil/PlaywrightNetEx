@@ -9,8 +9,8 @@ namespace PlaywrightNetEx.Pages
         public readonly ILocator DivContainingPassword;
         public readonly ILocator TxtUserName;
         public readonly ILocator TxtPassword;
-        public readonly ILocator LoginButton;
-        public readonly ILocator ErrorButton;
+        public readonly ILocator BtnLogin;
+        public readonly ILocator BtnError;
 
         public LoginPage(IPage page)
         {
@@ -18,8 +18,8 @@ namespace PlaywrightNetEx.Pages
             DivContainingPassword = _page.Locator("//div[@class='login_password']");
             TxtUserName = _page.Locator("//input[@name='user-name']");
             TxtPassword = _page.Locator("//input[@name='password']");
-            LoginButton = _page.Locator("//input[@name='login-button']");
-            ErrorButton = _page.Locator("//*[@class='error-button']");
+            BtnLogin = _page.Locator("//input[@name='login-button']");
+            BtnError = _page.Locator("//*[@class='error-button']");
         }
 
         public async Task GoToLoginPage()
@@ -38,7 +38,7 @@ namespace PlaywrightNetEx.Pages
         {
             await TxtUserName.FillAsync(user);
             await TxtPassword.FillAsync(await GetPassword());
-            await LoginButton.ClickAsync();
+            await BtnLogin.ClickAsync();
         }
 
         public async Task LoginStandardUser()

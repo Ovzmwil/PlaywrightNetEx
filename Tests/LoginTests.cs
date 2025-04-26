@@ -14,6 +14,7 @@ namespace PlaywrightNetEx.Tests
         public async Task SetUp()
         {
             _loginPage = new LoginPage(Page);
+
             await _loginPage.GoToLoginPage();
         }
 
@@ -34,7 +35,7 @@ namespace PlaywrightNetEx.Tests
         public async Task LoginLockedUser()
         {
             await _loginPage.LoginLockedUser();
-            await Expect(_loginPage.ErrorButton).ToBeVisibleAsync();
+            await Expect(_loginPage.BtnError).ToBeVisibleAsync();
         }
     }
 }

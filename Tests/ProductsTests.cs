@@ -9,13 +9,15 @@ namespace PlaywrightNetEx.Tests
     {
         private ProductsPage _productsPage;
         private LoginPage _loginPage;
+
         [SetUp]
         public async Task SetUp()
         {
             _loginPage = new LoginPage(Page);
+            _productsPage = new ProductsPage(Page);
+
             await _loginPage.GoToLoginPage();
             await _loginPage.LoginStandardUser();
-            _productsPage = new ProductsPage(Page);
         }
 
         [Test]
@@ -40,7 +42,7 @@ namespace PlaywrightNetEx.Tests
         public async Task AddAllProductsToCart()
         {
             await _productsPage.AddAllProductsToCart();
-            await Expect(_productsPage.ShoppingCartBadge).ToHaveTextAsync("6");
+            await Expect(_productsPage.BtnShoppingCartBadge).ToHaveTextAsync("6");
         }
     }
 }

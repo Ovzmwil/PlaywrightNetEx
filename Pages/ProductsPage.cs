@@ -8,8 +8,8 @@ namespace PlaywrightNetEx.Pages
         public readonly ILocator Products;
         public readonly ILocator Descriptions;
         public readonly ILocator Prices;
-        public readonly ILocator AddToCartButtons;
-        public readonly ILocator ShoppingCartBadge;
+        public readonly ILocator BtnsAddToCart;
+        public readonly ILocator BtnShoppingCartBadge;
 
         public ProductsPage(IPage page)
         {
@@ -17,16 +17,21 @@ namespace PlaywrightNetEx.Pages
             Products = _page.Locator("//div[@class='inventory_item']");
             Descriptions = _page.Locator("//div[@class='inventory_item_description']");
             Prices = _page.Locator("//div[@class='inventory_item_price']");
-            AddToCartButtons = _page.Locator("//button[contains(text(), 'Add to cart')]");
-            ShoppingCartBadge = _page.Locator("//span[@class='shopping_cart_badge']");
+            BtnsAddToCart = _page.Locator("//button[contains(text(), 'Add to cart')]");
+            BtnShoppingCartBadge = _page.Locator("//span[@class='shopping_cart_badge']");
         }
 
         public async Task AddAllProductsToCart()
         {
-            foreach (var button in await AddToCartButtons.ElementHandlesAsync())
+            foreach (var button in await BtnsAddToCart.ElementHandlesAsync())
             {
                 await button.ClickAsync();
             }
+        }
+
+        public async Task ClickOnCart()
+        {
+            await BtnShoppingCartBadge.ClickAsync();
         }
     }
 }
