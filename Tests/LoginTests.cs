@@ -11,13 +11,13 @@ namespace PlaywrightNetEx.Tests
     [TestFixture]
     public class LoginTests : PageTest
     {
-        private LoginPage loginPage;
+        private LoginPage _loginPage;
 
         [SetUp]
         public async Task SetUp()
         {
-            loginPage = new LoginPage(Page);
-            await loginPage.GoToLoginPage();
+            _loginPage = new LoginPage(Page);
+            await _loginPage.GoToLoginPage();
         }
 
         [Test]
@@ -29,15 +29,15 @@ namespace PlaywrightNetEx.Tests
         [Test]
         public async Task LoginStandardUser()
         {
-            await loginPage.LoginStandardUser();
+            await _loginPage.LoginStandardUser();
             await Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
         }
 
         [Test]
         public async Task LoginLockedUser()
         {
-            await loginPage.LoginLockedUser();
-            await Expect(loginPage.GetErrorElement()).ToBeVisibleAsync();
+            await _loginPage.LoginLockedUser();
+            await Expect(_loginPage.GetErrorElement()).ToBeVisibleAsync();
         }
     }
 }

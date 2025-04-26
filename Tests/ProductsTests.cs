@@ -9,41 +9,40 @@ namespace PlaywrightNetEx.Tests
     [TestFixture]
     class ProductsTests : PageTest
     {
+        private ProductsPage _productsPage;
+        private LoginPage _loginPage;
         [SetUp]
         public async Task SetUp()
         {
-            var loginPage = new LoginPage(Page);
-            await loginPage.GoToLoginPage();
-            await loginPage.LoginStandardUser();
+            _loginPage = new LoginPage(Page);
+            await _loginPage.GoToLoginPage();
+            await _loginPage.LoginStandardUser();
+            _productsPage = new ProductsPage(Page);
         }
 
         [Test]
         public async Task SixProductsArePresent()
         {
-            await Expect(Page.Locator("//div[@class='inventory_item']")).ToHaveCountAsync(6);
+            await Expect(_productsPage.Products).ToHaveCountAsync(6);
         }
 
         [Test]
         public async Task DescriptionsArePresent()
         {
-            await Expect(Page.Locator("//div[@class='inventory_item_description']")).ToHaveCountAsync(6);
+            await Expect(_productsPage.Descriptions).ToHaveCountAsync(6);
         }
 
         [Test]
         public async Task PricesArePresent()
         {
-            await Expect(Page.Locator("//div[@class='inventory_item_price']")).ToHaveCountAsync(6);
+            await Expect(_productsPage.Prices).ToHaveCountAsync(6);
         }
 
         [Test]
         public async Task AddAllProductsToCart()
         {
-            var addToCartButtons = Page.Locator("//button[contains(text(), 'Add to cart')]");
-            foreach (var button in await addToCartButtons.ElementHandlesAsync())
-            {
-                await button.ClickAsync();
-            }
-            await Expect(Page.Locator("//span[@class='shopping_cart_badge']")).ToHaveTextAsync("6");
+            await _productsPage.AddAllProductsToCart();
+            await Expect(_productsPage.ShoppingCartBadge).ToHaveTextAsync("6");
         }
     }
 }
