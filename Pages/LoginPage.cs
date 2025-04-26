@@ -6,9 +6,20 @@ namespace PlaywrightNetEx.Pages
     class LoginPage
     {
         private readonly IPage _page;
+        public readonly ILocator DivContainingPassword;
+        public readonly ILocator TxtUserName;
+        public readonly ILocator TxtPassword;
+        public readonly ILocator LoginButton;
+        public readonly ILocator ErrorButton;
+
         public LoginPage(IPage page)
         {
             _page = page;
+            DivContainingPassword = _page.Locator("//div[@class='login_password']");
+            TxtUserName = _page.Locator("//input[@name='user-name']");
+            TxtPassword = _page.Locator("//input[@name='password']");
+            LoginButton = _page.Locator("//input[@name='login-button']");
+            ErrorButton = _page.Locator("//*[@class='error-button']");
         }
 
         public async Task GoToLoginPage()
@@ -18,16 +29,16 @@ namespace PlaywrightNetEx.Pages
         }
         public async Task<string> GetPassword()
         {
-            var password = await _page.Locator("//div[@class='login_password']").TextContentAsync();
-            password = password.Substring(password.IndexOf(":") + 1);
+            var stringContainingPassword = await DivContainingPassword.TextContentAsync();
+            var password = stringContainingPassword.Substring(stringContainingPassword.IndexOf(":") + 1);
             return password;
         }
 
         private async Task Login(string user)
         {
-            await _page.FillAsync("input[name='user-name']", user);
-            await _page.FillAsync("input[name='password']", await GetPassword());
-            await _page.ClickAsync("//input[@name='login-button']");
+            await TxtUserName.FillAsync(user);
+            await TxtPassword.FillAsync(await GetPassword());
+            await LoginButton.ClickAsync();
         }
 
         public async Task LoginStandardUser()
@@ -38,11 +49,6 @@ namespace PlaywrightNetEx.Pages
         public async Task LoginLockedUser()
         {
             await Login(Users.LockedOutUser);
-        }
-
-        public ILocator GetErrorElement()
-        {
-            return _page.Locator("//*[@class='error-button']");
         }
     }
 }

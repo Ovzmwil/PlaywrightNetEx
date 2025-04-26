@@ -1,7 +1,5 @@
-﻿using Microsoft.Playwright;
-using Microsoft.Playwright.NUnit;
+﻿using Microsoft.Playwright.NUnit;
 using PlaywrightNetEx.Pages;
-using System.Reflection.Emit;
 
 namespace PlaywrightNetEx.Tests
 {

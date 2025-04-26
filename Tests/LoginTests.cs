@@ -1,8 +1,5 @@
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
-using NUnit.Framework;
 using PlaywrightNetEx.Pages;
 
 namespace PlaywrightNetEx.Tests
@@ -37,7 +34,7 @@ namespace PlaywrightNetEx.Tests
         public async Task LoginLockedUser()
         {
             await _loginPage.LoginLockedUser();
-            await Expect(_loginPage.GetErrorElement()).ToBeVisibleAsync();
+            await Expect(_loginPage.ErrorButton).ToBeVisibleAsync();
         }
     }
 }
