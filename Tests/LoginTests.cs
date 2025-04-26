@@ -16,23 +16,27 @@ namespace PlaywrightNetEx.Tests
         public async Task SetUp()
         {
             await Page.SetViewportSizeAsync(1280, 720);
-            await Page.GotoAsync("https://playwright.dev");
-            HomePage homePage = new(Page);
-            await homePage.goToLoginPage();
+            await Page.GotoAsync("https://www.saucedemo.com");
         }
 
         [Test]
-        public async Task CreateNewUser()
+        public async Task EnterLoginPage()
         {
-            await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
+            await Expect(Page).ToHaveTitleAsync(new Regex("Swag Labs"));
         }
 
         [Test]
-        public async Task GetStartedLink()
+        public async Task LoginStandardUser()
         {
-            await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
+            await LoginPage.LoginStandardUser(Page);
+            await Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
+        }
 
-            await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
+        [Test]
+        public async Task LoginLockedUser()
+        {
+            await LoginPage.LoginLockedUser(Page);
+            await Expect(Page.Locator("//*[@class='error-button']")).ToBeVisibleAsync();
         }
     }
 }
