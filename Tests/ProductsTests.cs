@@ -7,6 +7,8 @@ namespace PlaywrightNetEx.Tests
     [TestFixture]
     class ProductsTests : PageTest
     {
+        private const int expectedProductsNumber = 6;
+
         private ProductsPage _productsPage;
         private LoginPage _loginPage;
 
@@ -23,26 +25,26 @@ namespace PlaywrightNetEx.Tests
         [Test]
         public async Task SixProductsArePresent()
         {
-            await Expect(_productsPage.Products).ToHaveCountAsync(6);
+            await Expect(_productsPage.Products).ToHaveCountAsync(expectedProductsNumber);
         }
 
         [Test]
         public async Task DescriptionsArePresent()
         {
-            await Expect(_productsPage.Descriptions).ToHaveCountAsync(6);
+            await Expect(_productsPage.Descriptions).ToHaveCountAsync(expectedProductsNumber);
         }
 
         [Test]
         public async Task PricesArePresent()
         {
-            await Expect(_productsPage.Prices).ToHaveCountAsync(6);
+            await Expect(_productsPage.Prices).ToHaveCountAsync(expectedProductsNumber);
         }
 
         [Test]
         public async Task AddAllProductsToCart()
         {
             await _productsPage.AddAllProductsToCart();
-            await Expect(_productsPage.BtnShoppingCartBadge).ToHaveTextAsync("6");
+            await Expect(_productsPage.BtnShoppingCartBadge).ToHaveTextAsync(expectedProductsNumber.ToString());
         }
     }
 }

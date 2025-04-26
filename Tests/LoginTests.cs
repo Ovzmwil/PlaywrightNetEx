@@ -8,6 +8,9 @@ namespace PlaywrightNetEx.Tests
     [TestFixture]
     public class LoginTests : PageTest
     {
+        private const string expectedTitle = "Swag Labs";
+        private const string expectedUrl = "https://www.saucedemo.com/inventory.html";
+
         private LoginPage _loginPage;
 
         [SetUp]
@@ -21,14 +24,14 @@ namespace PlaywrightNetEx.Tests
         [Test]
         public async Task EnterLoginPage()
         {
-            await Expect(Page).ToHaveTitleAsync(new Regex("Swag Labs"));
+            await Expect(Page).ToHaveTitleAsync(new Regex(expectedTitle));
         }
 
         [Test]
         public async Task LoginStandardUser()
         {
             await _loginPage.LoginStandardUser();
-            await Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
+            await Expect(Page).ToHaveURLAsync(expectedUrl);
         }
 
         [Test]

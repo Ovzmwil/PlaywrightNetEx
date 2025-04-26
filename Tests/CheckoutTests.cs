@@ -7,6 +7,8 @@ namespace PlaywrightNetEx.Tests
     [TestFixture]
     class CheckoutTests : PageTest
     {
+        private const string thankingMessage = "Thank you for your order!";
+
         private LoginPage _loginPage;
         private ProductsPage _productsPage;
         private CheckoutPage _checkoutPage;
@@ -32,7 +34,7 @@ namespace PlaywrightNetEx.Tests
             await _checkoutPage.FillClientInformation(firstName, lastName, postalCode);
             await _checkoutPage.ClickOnContinue();
             await _checkoutPage.ClickOnFinish();
-            await Expect(_checkoutPage.MsgThanking).ToHaveTextAsync("Thank you for your order!");
+            await Expect(_checkoutPage.MsgThanking).ToHaveTextAsync(thankingMessage);
         }
 
         [Test]
