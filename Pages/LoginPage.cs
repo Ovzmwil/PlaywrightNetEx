@@ -5,33 +5,44 @@ namespace PlaywrightNetEx.Pages
 {
     class LoginPage
     {
-        public static async Task<string> GetPassword(IPage page)
+        private readonly IPage _page;
+        public LoginPage(IPage page)
         {
-            var password = await page.Locator("//div[@class='login_password']").TextContentAsync();
+            _page = page;
+        }
+
+        public async Task GoToLoginPage()
+        {
+            await _page.SetViewportSizeAsync(1280, 720);
+            await _page.GotoAsync("https://www.saucedemo.com");
+        }
+        public async Task<string> GetPassword()
+        {
+            var password = await _page.Locator("//div[@class='login_password']").TextContentAsync();
             password = password.Substring(password.IndexOf(":") + 1);
             return password;
         }
 
-        private static async Task Login(IPage page,string user)
+        private async Task Login(string user)
         {
-            await page.FillAsync("input[name='user-name']", user);
-            await page.FillAsync("input[name='password']", await GetPassword(page));
-            await page.ClickAsync("//input[@name='login-button']");
+            await _page.FillAsync("input[name='user-name']", user);
+            await _page.FillAsync("input[name='password']", await GetPassword());
+            await _page.ClickAsync("//input[@name='login-button']");
         }
 
-        public static async Task LoginStandardUser(IPage page)
+        public async Task LoginStandardUser()
         {
-            await Login(page, Users.StandardUser);
+            await Login(Users.StandardUser);
         }
 
-        public static async Task LoginLockedUser(IPage page)
+        public async Task LoginLockedUser()
         {
-            await Login(page, Users.LockedOutUser);
+            await Login(Users.LockedOutUser);
         }
 
-        public static ILocator GetErrorElement(IPage page)
+        public ILocator GetErrorElement()
         {
-            return page.Locator("//*[@class='error-button']");
+            return _page.Locator("//*[@class='error-button']");
         }
     }
 }

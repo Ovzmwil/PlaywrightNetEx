@@ -12,9 +12,9 @@ namespace PlaywrightNetEx.Tests
         [SetUp]
         public async Task SetUp()
         {
-            await Page.SetViewportSizeAsync(1280, 720);
-            await Page.GotoAsync("https://www.saucedemo.com");
-            await LoginPage.LoginStandardUser(Page);
+            var loginPage = new LoginPage(Page);
+            await loginPage.GoToLoginPage();
+            await loginPage.LoginStandardUser();
         }
 
         [Test]
