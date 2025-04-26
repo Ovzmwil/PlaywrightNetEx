@@ -36,7 +36,7 @@ namespace PlaywrightNetEx.Tests
         public async Task LoginLockedUser()
         {
             await LoginPage.LoginLockedUser(Page);
-            await Expect(Page.Locator("//*[@class='error-button']")).ToBeVisibleAsync();
+            await Expect(LoginPage.GetErrorElement(Page)).ToBeVisibleAsync();
         }
     }
 }

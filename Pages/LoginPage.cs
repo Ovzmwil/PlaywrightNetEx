@@ -28,5 +28,10 @@ namespace PlaywrightNetEx.Pages
         {
             await Login(page, Users.LockedOutUser);
         }
+
+        public static ILocator GetErrorElement(IPage page)
+        {
+            return page.Locator("//*[@class='error-button']");
+        }
     }
 }
