@@ -6,7 +6,7 @@ namespace PlaywrightNetEx.Tests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    public class LoginTests : PageTest
+    public class LoginTests : BaseTest
     {
         private const string expectedTitle = "Swag Labs";
         private const string expectedUrl = "https://www.saucedemo.com/inventory.html";

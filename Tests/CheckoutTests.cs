@@ -5,7 +5,7 @@ namespace PlaywrightNetEx.Tests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    class CheckoutTests : PageTest
+    class CheckoutTests : BaseTest
     {
         private const string thankingMessage = "Thank you for your order!";
 

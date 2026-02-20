@@ -5,7 +5,7 @@ namespace PlaywrightNetEx.Tests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    class ProductsTests : PageTest
+    class ProductsTests : BaseTest
     {
         private const int expectedProductsNumber = 6;
 
